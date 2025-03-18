@@ -32,5 +32,5 @@
 		pstmt.close();
 	if (conn != null)
 		conn.close();
-	response.sendRedirect("Main.jsp"); 
+	response.sendRedirect("Itmade.jsp"); 
 %>

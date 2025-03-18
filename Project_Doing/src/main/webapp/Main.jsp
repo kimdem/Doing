@@ -22,12 +22,12 @@
             <%
 	            PreparedStatement pstmt = null;
 	    		ResultSet rs = null;
-	    		String sql = "select project from task";
+	    		String sql = "select tasknumber, project from task";
 	    		pstmt = conn.prepareStatement(sql);
 	    		rs = pstmt.executeQuery();
 	    		while (rs.next()) {
             %>
-            		<li class="task"><a href="#"><strong><%=rs.getString("project")%></strong></a></li>
+            		<li class="task"><a href="./Index.jsp?tasknumber=<%=rs.getInt("tasknumber") %>"><strong><%=rs.getString("project")%></strong></a></li>
             		
            <%
 	    		}

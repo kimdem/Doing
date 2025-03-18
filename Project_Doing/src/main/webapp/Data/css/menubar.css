@@ -1,0 +1,22 @@
+.Home_Default_icon {
+        	width: 32px;
+        	height: 32px;
+        }
+     .nav {
+     		width: 100%;
+		    text-align: left;
+		}
+		
+        .nav li {
+		 display: inline-block;
+		 width: 100%;
+		}
+		
+		.nav a {
+		  display: flex;
+		  align-items: left;
+		  justify-content: left;
+		  width: 32px;
+		  height: 32px;
+		  padding: 0;
+		}
