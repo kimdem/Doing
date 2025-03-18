@@ -22,12 +22,25 @@ body {
 
 h1 {
 	text-align: center;
+	color: red;
+	margin: 3%
 }
 
-h3 {
-	font-size: 23px;
+ul {
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
 }
-
-div {
-	margin-bottom: 30px
+        
+.task {
+     padding: 15px;
+     border-radius: 5px;
+     background: #e3f2fd;
+     margin: 10px 0;
+            
+ }
+        
+li a {
+	text-decoration: none;
+	color: black;
 }

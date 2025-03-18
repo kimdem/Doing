@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include file="dbconn.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,23 +16,30 @@
         <h1>Doing Develope!</h1>
         <div class="add-btn">
         	<a href="addtask.jsp" class="btn btn-success me-2">추가</a>
-        	<a href="#" class="btn btn-danger">삭제</a>
+        	<a href="removetask.jsp" class="btn btn-danger">삭제</a>
         </div>
-        <div id="taskList">
+        	<ul>
             <%
-                String[][] tasks = {
-                    {"1번", "-"},
-                    {"2번", "-"},
-                    {"3번", "-"},
-                    {"4번", "-"}
-                };
-                for (String[] task : tasks) {
+	            PreparedStatement pstmt = null;
+	    		ResultSet rs = null;
+	    		String sql = "select project from task";
+	    		pstmt = conn.prepareStatement(sql);
+	    		rs = pstmt.executeQuery();
+	    		while (rs.next()) {
             %>
-            <div class="task">
-                <strong><%= task[0] %></strong> - <%= task[1] %>
-            </div>
-            <% } %>
+            		<li class="task"><a href="#"><strong><%=rs.getString("project")%></strong></a></li>
+            		
+           <%
+	    		}
+	    		
+	    		if (rs != null) 
+	    			rs.close();
+	    		if (pstmt != null)
+	    			pstmt.close();
+	    		if (conn != null)
+	    			conn.close();
+           %>
+           </ul>
         </div>
-    </div>
 </body>
 </html>

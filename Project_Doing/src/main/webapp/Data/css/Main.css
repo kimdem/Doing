@@ -24,11 +24,23 @@
         h1 {
             text-align: center;
         }
+        ul {
+        	list-style-type: none;
+        	margin: 0;
+        	padding: 0;
+        }
+        
         .task {
             padding: 15px;
             border-radius: 5px;
             background: #e3f2fd;
             margin: 10px 0;
+            
+        }
+        
+        li a {
+        	text-decoration: none;
+        	color: black;
         }
         
         a {
