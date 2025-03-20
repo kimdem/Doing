@@ -34,7 +34,6 @@
 			<a href="Cal.jsp?tasknumber=<%=tasknumber_m %>" class="btn btn-secondary">돌아가기</a>
 		</div>
 	</form>
-	</div>
-	
+	</div>	
 </body>
 </html>

@@ -6,18 +6,18 @@
 	
 	String tasknumber = request.getParameter("tasknumber");
 	String cal_name = request.getParameter("cal_name");
-	String cal_fd = request.getParameter("cal_f");
-	String cal_sd = request.getParameter("cal_s");
+	String cal_fd = request.getParameter("cal_fd");
+	String cal_sd = request.getParameter("cal_sd");
 	String des = request.getParameter("des");
 
 	PreparedStatement pstmt=null;
-	String sql = "INSERT INTO cal (tasknum, cal_name, cal_fd, cal_sd, des) VALUES (?, ?, ?, ?, ?)";
+	String sql = "UPDATE cal SET cal_name=?, cal_fd=?, cal_sd=?, des=? WHERE tasknum=?";
 	pstmt=conn.prepareStatement(sql);
-	pstmt.setString(1, tasknumber);
-	pstmt.setString(2, cal_name);
-	pstmt.setString(3, cal_fd);
-	pstmt.setString(4, cal_sd);
-	pstmt.setString(5, des);
+	pstmt.setString(1, cal_name);
+	pstmt.setString(2, cal_fd);
+	pstmt.setString(3, cal_sd);
+	pstmt.setString(4, des);
+	pstmt.setString(5, tasknumber);
 	pstmt.executeUpdate();
 	
 	if (pstmt != null)
@@ -26,7 +26,7 @@
 		conn.close();
 %>
 <script>
-alert("일정이 추가되었습니다.");
+    alert("일정이 수정되었습니다.");
 </script>
 <%
 	response.sendRedirect("Cal.jsp?tasknumber=" + tasknumber); 
