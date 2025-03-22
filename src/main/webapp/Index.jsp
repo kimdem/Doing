@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상세정보</title>
-    <%@ include file="menubar.jsp" %>
 </head>
 <body>
 	<%
@@ -22,6 +21,7 @@
 		rs = pstmt.executeQuery();
 		if(rs.next()) {
 	%>
+	<%@ include file="menubar.jsp" %>
 	<div class="mainbox">
 		<h1><b><%=rs.getString("project") %></b></h1><hr>
 		<h3><b>상세 정보</b></h3><br><br>

@@ -26,7 +26,7 @@
 	    		rs = pstmt.executeQuery();
 	    		while (rs.next()) {
             %>
-            		<li class="task"><a href="./Index.jsp?tasknumber=<%=rs.getInt("tasknumber") %>" style="color: black;"><strong><%=rs.getString("project")%></strong></a></li>
+            		<li class="task"><a href="./Cal.jsp?tasknumber=<%=rs.getInt("tasknumber") %>" style="color: black;"><strong><%=rs.getString("project")%></strong></a></li>
             		
            <%
 	    		}

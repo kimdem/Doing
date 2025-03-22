@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%
-	String tasknumber_m = request.getParameter("tasknumber");
+	String tasknumber_m = session.getAttribute("session_tasknumber").toString();
 %>
 
 <link rel="stylesheet" href="./Data/css/menubar.css" />

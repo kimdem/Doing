@@ -12,11 +12,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>일정 확인</title>
-    <%@ include file="menubar.jsp" %>
 </head>
 <body>
 	<%
 		String tasknumber=request.getParameter("tasknumber");
+		session.setAttribute("session_tasknumber", tasknumber);
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from task where tasknumber = ?";
@@ -25,6 +25,7 @@
 		rs = pstmt.executeQuery();
 		if(rs.next()) {
 	%>
+	<%@ include file="menubar.jsp" %>
     <div class="mainbox">
         <h1><strong><%=rs.getString("project") %></strong></h1><hr>
         <div id="calendar">

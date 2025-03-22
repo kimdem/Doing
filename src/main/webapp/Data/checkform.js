@@ -36,8 +36,8 @@ function checkform() {
 		seconddate.focus();
 		return false;
 	}
-	if (des.value.length > 30) {
-		alert("설명은 30자 이하로 작성하십시오");
+	if (des.value.length > 100) {
+		alert("설명은 100자 이하로 작성하십시오");
 		des.focus();
 		return false;
 	}

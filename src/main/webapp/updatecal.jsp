@@ -12,11 +12,11 @@
     <%@ include file="menubar.jsp" %>	
 </head>
 <body>
-	<div class="mainbox">
+	<div class="mainbox" style="overflow-y: auto;">
 			<h1>일정 List</h1><hr>
 			<ul>
 			<%
-				String tasknumber=request.getParameter("tasknumber");
+				String tasknumber=session.getAttribute("session_tasknumber").toString();
 				PreparedStatement pstmt = null;
 	    		ResultSet rs = null;
 	    		String sql = "select cal_id, cal_name from cal where tasknum = ?";
@@ -27,7 +27,7 @@
 	    		
 			%>
 				<li class="task"><a href="./update.jsp?cal_id=<%=rs.getInt("cal_id") %>" style="color: black;"><strong><%=rs.getString("cal_name")%></strong></a></li>
-			
+				
 			<%
 	    		}
 	    		

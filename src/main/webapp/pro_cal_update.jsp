@@ -4,20 +4,23 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	
-	String tasknumber = request.getParameter("tasknumber");
+	String tasknumber = session.getAttribute("session_tasknumber").toString();
+	String cal_id = request.getParameter("cal_id");
 	String cal_name = request.getParameter("cal_name");
 	String cal_fd = request.getParameter("cal_fd");
 	String cal_sd = request.getParameter("cal_sd");
 	String des = request.getParameter("des");
+	
+	Integer Intcal_id = Integer.parseInt(cal_id);
 
 	PreparedStatement pstmt=null;
-	String sql = "UPDATE cal SET cal_name=?, cal_fd=?, cal_sd=?, des=? WHERE tasknum=?";
+	String sql = "UPDATE cal SET cal_name=?, cal_fd=?, cal_sd=?, des=? WHERE cal_id=?";
 	pstmt=conn.prepareStatement(sql);
 	pstmt.setString(1, cal_name);
 	pstmt.setString(2, cal_fd);
 	pstmt.setString(3, cal_sd);
 	pstmt.setString(4, des);
-	pstmt.setString(5, tasknumber);
+	pstmt.setInt(5, Intcal_id);
 	pstmt.executeUpdate();
 	
 	if (pstmt != null)
@@ -27,7 +30,5 @@
 %>
 <script>
     alert("일정이 수정되었습니다.");
+    window.location.href = "Cal.jsp?tasknumber=<%=tasknumber %>";
 </script>
-<%
-	response.sendRedirect("Cal.jsp?tasknumber=" + tasknumber); 
-%>

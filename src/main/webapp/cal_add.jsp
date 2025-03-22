@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include file="dbconn.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,10 +13,22 @@
     <%@ include file="menubar.jsp" %>	
 </head>
 <body>
+	<%
+		String tasknumber=session.getAttribute("session_tasknumber").toString();
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql = "SELECT firstdate, seconddate FROM task where tasknumber=?";
+	    pstmt = conn.prepareStatement(sql);
+	    pstmt.setString(1, tasknumber);
+	    rs = pstmt.executeQuery();
+	    if (rs.next()) {
+	%>
 	<div class="mainbox">
 	<form name="cal_add" action="./pro_cal_add.jsp" method="post">
 		<h1>프로젝트 일정 추가하기</h1>
 		<div>
+			 <input type="hidden" id="FD" name="FD" value="<%=rs.getDate("firstdate")%>">
+			 <input type="hidden" id="SD" name="SD" value="<%=rs.getDate("seconddate")%>">
 			 <input type="hidden" name="tasknumber" value="<%=tasknumber_m%>">
 			<h3>일정 이름 : </h3>
 			<input type="text" id="cal_name" name="cal_name" class="form-control">
@@ -35,5 +48,14 @@
 		</div>
 	</form>
 	</div>	
+	<%
+        }
+        if (rs != null) 
+            rs.close();
+        if (pstmt != null)
+            pstmt.close();
+        if (conn != null)
+            conn.close();
+     %>
 </body>
 </html>

@@ -3,13 +3,16 @@
 <%@ include file="dbconn.jsp" %>
 <%
 	request.setCharacterEncoding("UTF-8");
-	
 	String tasknumber = request.getParameter("tasknumber");
 	String cal_name = request.getParameter("cal_name");
 	String cal_fd = request.getParameter("cal_f");
 	String cal_sd = request.getParameter("cal_s");
 	String des = request.getParameter("des");
 
+	if(des.isEmpty()) {
+        des = "-";
+    }
+	
 	PreparedStatement pstmt=null;
 	String sql = "INSERT INTO cal (tasknum, cal_name, cal_fd, cal_sd, des) VALUES (?, ?, ?, ?, ?)";
 	pstmt=conn.prepareStatement(sql);
@@ -26,8 +29,6 @@
 		conn.close();
 %>
 <script>
-alert("일정이 추가되었습니다.");
+	alert("일정이 추가되었습니다.");
+	window.location.href = "Cal.jsp?tasknumber=<%=tasknumber %>";
 </script>
-<%
-	response.sendRedirect("Cal.jsp?tasknumber=" + tasknumber); 
-%>
