@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontisto/css/fontisto.min.css">
 	<link rel="stylesheet" href="./Data/css/Main.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-	<script src="./Data/request.js"></script>
+	<script src="./Data/sub.js"></script>
 	<script src="./Data/Notifi.js"></script>
 	<script>
 		if ('serviceWorker' in navigator) {
@@ -32,7 +32,7 @@
         <div class="add-btn">
         	<a href="addtask.jsp" class="btn btn-success me-2">추가</a>
         	<a href="removetask.jsp" class="btn btn-danger me-2">삭제</a>
-        	<button class="btn btn-primary" onclick="requestN();">알림 허용</button>
+        	<button class="btn btn-primary" onclick="requestNotificationPermission();">알림 허용</button>
         	<button class="btn btn-primary" onclick="sendTestNotification();">test</button>
         </div>
         	<ul>
