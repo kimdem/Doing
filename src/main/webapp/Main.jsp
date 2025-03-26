@@ -6,22 +6,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontisto/css/fontisto.min.css">
 	<link rel="stylesheet" href="./Data/css/Main.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-	<script src="./Data/sub.js"></script>
-	<script src="./Data/Notifi.js"></script>
-	<script>
-		if ('serviceWorker' in navigator) {
-		    navigator.serviceWorker.register('./Data/sw.js', { scope: './Data/' })
-		        .then(function(registration) {
-		            console.log('서비스 워커 등록 성공:', registration);
-		        })
-		        .catch(function(error) {
-		            console.error('서비스 워커 등록 실패:', error);
-		        });
-		} else {
-		    console.log("서비스 워커를 지원하지 않는 브라우저입니다.");
-		}
-
-    </script>
+	<script type="module" src="./sub.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>개발 진행 현황</title>
@@ -32,8 +17,8 @@
         <div class="add-btn">
         	<a href="addtask.jsp" class="btn btn-success me-2">추가</a>
         	<a href="removetask.jsp" class="btn btn-danger me-2">삭제</a>
-        	<button class="btn btn-primary" onclick="requestNotificationPermission();">알림 허용</button>
-        	<button class="btn btn-primary" onclick="sendTestNotification();">test</button>
+        	<button class="btn btn-primary" onclick="requestFcmToken()">알림 허용</button>
+        	<button class="btn btn-info" id="sendNotificationButton">test</button>
         </div>
         	<ul>
             <%
