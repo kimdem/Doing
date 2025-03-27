@@ -27,7 +27,7 @@
 		String cal_id=request.getParameter("cal_id");
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String sql = "select cal_name, cal_fd, cal_sd, des from cal where cal_id = ?";
+        String sql = "select cal_name, cal_fd, cal_sd, des, cal_complete from cal where cal_id = ?";
         pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, cal_id);
         rs = pstmt.executeQuery();
@@ -49,6 +49,11 @@
 		<div>
 			<h3>일정 코멘트 : </h3>
 		    <textarea name="des" id="des" cols="50" rows="4" class="form-control" placeholder="100자 이내로 작성하시오"><%=rs.getString("des")%></textarea>
+		</div>
+		<div>
+			<h3>일정 완료</h3>
+			<input type="radio" id="cal_complete_false" name="cal_complete" value="false" <%= rs.getBoolean("cal_complete") ? "" : "checked" %>>미완료
+			<input type="radio" id="cal_complete_true" name="cal_complete" value="true" <%= rs.getBoolean("cal_complete") ? "checked" : "" %>>완료
 		</div>
 		<%
 	        }

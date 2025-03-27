@@ -3,12 +3,12 @@ importScripts('https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging-com
 
 // Firebase 초기화
 firebase.initializeApp({
-  apiKey: "AIzaSyCUz2oNdshGZKmWKDn-lH5lyjpdFKo_5Lc",
-  authDomain: "do-ing-e07b6.firebaseapp.com",
-  projectId: "do-ing-e07b6",
-  storageBucket: "do-ing-e07b6.firebasestorage.app",
-  messagingSenderId: "650461761662",
-  appId: "1:650461761662:web:813ec734f94e9f3a11882f"
+	apiKey: "AIzaSyCUz2oNdshGZKmWKDn-lH5lyjpdFKo_5Lc",
+	authDomain: "do-ing-e07b6.firebaseapp.com",
+	projectId: "do-ing-e07b6",
+	storageBucket: "do-ing-e07b6.firebasestorage.app",
+	messagingSenderId: "650461761662",
+	appId: "1:650461761662:web:813ec734f94e9f3a11882f"
 });
 
 // Firebase Messaging 인스턴스 생성

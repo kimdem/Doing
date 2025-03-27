@@ -17,8 +17,7 @@
         <div class="add-btn">
         	<a href="addtask.jsp" class="btn btn-success me-2">추가</a>
         	<a href="removetask.jsp" class="btn btn-danger me-2">삭제</a>
-        	<button class="btn btn-primary" onclick="requestFcmToken()">알림 허용</button>
-        	<button class="btn btn-info" id="sendNotificationButton">test</button>
+        	<button class="btn btn-info me-2" id="sendNotificationButton">test</button>
         </div>
         	<ul>
             <%

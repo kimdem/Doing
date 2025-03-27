@@ -10,17 +10,21 @@
 	String cal_fd = request.getParameter("cal_fd");
 	String cal_sd = request.getParameter("cal_sd");
 	String des = request.getParameter("des");
+	String cal_complete = request.getParameter("cal_complete");
+	
+	Boolean complete = Boolean.parseBoolean(cal_complete);
 	
 	Integer Intcal_id = Integer.parseInt(cal_id);
 
 	PreparedStatement pstmt=null;
-	String sql = "UPDATE cal SET cal_name=?, cal_fd=?, cal_sd=?, des=? WHERE cal_id=?";
+	String sql = "UPDATE cal SET cal_name=?, cal_fd=?, cal_sd=?, des=?, cal_complete=? WHERE cal_id=?";
 	pstmt=conn.prepareStatement(sql);
 	pstmt.setString(1, cal_name);
 	pstmt.setString(2, cal_fd);
 	pstmt.setString(3, cal_sd);
 	pstmt.setString(4, des);
-	pstmt.setInt(5, Intcal_id);
+	pstmt.setBoolean(5, complete);
+	pstmt.setInt(6, Intcal_id);
 	pstmt.executeUpdate();
 	
 	if (pstmt != null)

@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js';
-import { getMessaging, getToken } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging.js';
+import { getMessaging, onMessage, getToken } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCUz2oNdshGZKmWKDn-lH5lyjpdFKo_5Lc",
@@ -15,6 +15,17 @@ const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 const vapidKey = 'BFREf4Ot5tQlr7CD-w6dzys1hd9UPEKpr-GdYnIR10KQIYLnAxau9CG_aUEaDiTi5SqoTz7e2QGsqio1UljcaQc';
 
+onMessage(messaging, (payload) => {
+  console.log('Message received in foreground:', payload);
+
+  const notificationTitle = payload.notification?.title || 'Default Title';
+  const notificationOptions = {
+    body: payload.notification?.body || 'Default Body',
+    icon: payload.notification?.icon || '/icon.png',
+  };
+
+  new Notification(notificationTitle, notificationOptions);
+});
 
 // 서비스 워커 등록 및 FCM 토큰 요청
 if ('serviceWorker' in navigator) {
@@ -56,19 +67,17 @@ function sendTokenToServer(token) {
     .catch((error) => console.error('Error sending token to server:', error));
 }
 
-function sendPushNotification() {
+
+document.getElementById('sendNotificationButton').addEventListener('click', () => {
   fetch('http://localhost:3000/send-notification', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      title: 'Hello!',
-      body: 'This is a test push notification.',
+      title: 'DO-ING!',
+      body: '포그라운드 푸시 알림입니다.',
     }),
   })
     .then((response) => response.json())
     .then((data) => console.log('Notification sent:', data))
     .catch((error) => console.error('Error sending notification:', error));
-}
-
-// 버튼 클릭 이벤트 처리
-document.getElementById('sendNotificationButton').addEventListener('click', sendPushNotification);
+});

@@ -1,1 +1,1 @@
-SELECT * FROM cal;
+select cal_complete from cal;
