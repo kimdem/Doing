@@ -10,7 +10,6 @@ const firebaseConfig = {
   appId: "1:650461761662:web:813ec734f94e9f3a11882f"
 };
 
-// Firebase 초기화
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 const vapidKey = 'BFREf4Ot5tQlr7CD-w6dzys1hd9UPEKpr-GdYnIR10KQIYLnAxau9CG_aUEaDiTi5SqoTz7e2QGsqio1UljcaQc';
@@ -27,7 +26,6 @@ onMessage(messaging, (payload) => {
   new Notification(notificationTitle, notificationOptions);
 });
 
-// 서비스 워커 등록 및 FCM 토큰 요청
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/Project_Doing/firebase-messaging-sw.js')
     .then((registration) => {
@@ -42,7 +40,6 @@ if ('serviceWorker' in navigator) {
       if (currentToken) {
         console.log('FCM Token:', currentToken);
 
-        // 서버로 FCM 토큰 전달
         sendTokenToServer(currentToken);
       } else {
         console.log('No registration token available.');
@@ -55,12 +52,11 @@ if ('serviceWorker' in navigator) {
   console.error('Service Worker is not supported in this browser.');
 }
 
-// 서버로 FCM 토큰 전달 함수
 function sendTokenToServer(token) {
-  fetch('http://localhost:3000/save-token', { // 서버 URL 확인
+  fetch('http://localhost:3000/save-token', { 
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ token }), // FCM 토큰을 JSON 형식으로 전달
+    body: JSON.stringify({ token }),
   })
     .then((response) => response.json())
     .then((data) => console.log('Token saved on server:', data))
